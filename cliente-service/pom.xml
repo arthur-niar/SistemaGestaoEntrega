@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>entrega-service</artifactId>
+	<artifactId>clienteservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>entrega-service</name>
-	<description>Entrega Service</description>
+	<name>cliente-service</name>
+	<description>Cliente Service</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -53,6 +53,21 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-testcontainers</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>mongodb</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
