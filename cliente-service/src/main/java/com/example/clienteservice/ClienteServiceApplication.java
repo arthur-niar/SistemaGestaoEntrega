@@ -1,13 +1,13 @@
-package com.example.entregaservice;
+package com.example.clienteservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EntregaServiceApplication {
+public class ClienteServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EntregaServiceApplication.class, args);
+		SpringApplication.run(ClienteServiceApplication.class, args);
 	}
 
 }

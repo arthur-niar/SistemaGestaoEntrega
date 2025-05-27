@@ -22,10 +22,10 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
     
-      @GetMapping("/teste")
-public ResponseEntity<String> ping() {
-    return ResponseEntity.ok("Usuário Service está online!");
-}
+    @GetMapping("/teste")
+    public ResponseEntity<String> ping() {
+        return ResponseEntity.ok("Usuário Service está online!");
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO login) {
