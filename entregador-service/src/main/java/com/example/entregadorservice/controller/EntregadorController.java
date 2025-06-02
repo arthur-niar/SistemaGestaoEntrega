@@ -1,13 +1,14 @@
 package com.example.entregadorservice.controller;
 
 import org.bson.types.ObjectId;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,7 +29,7 @@ public class EntregadorController {
     }
     
     @PostMapping("/salvar")
-    public ResponseEntity<?> adicionarEntregador(Entregador entregador) {
+    public ResponseEntity<?> adicionarEntregador(@RequestBody Entregador entregador) {
         if (entregador == null || entregador.getUsuarioId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
              "Entregador ou ID de usuário inválido");
@@ -86,7 +87,7 @@ public class EntregadorController {
     }
 
     @RequestMapping("/{id}")
-    public ResponseEntity<?> buscarPorId(ObjectId id) {
+    public ResponseEntity<?> buscarPorId(@PathVariable ObjectId id) {
         if (!ObjectId.isValid(id.toHexString())) {
             return ResponseEntity.badRequest().body("ID inválido");
         }
@@ -95,8 +96,8 @@ public class EntregadorController {
                 .orElse(ResponseEntity.notFound().build());
     } 
     
-    @RequestMapping("/usuario/{usuarioId}")
-    public ResponseEntity<?> buscarPorUsuarioId(ObjectId usuarioId) { // exceção
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<?> buscarPorUsuarioId(@PathVariable ObjectId usuarioId) { // exceção
         try {
             return ResponseEntity.ok(entregadorService.buscarPorUsuarioId(usuarioId));
         } catch (RuntimeException e) {
@@ -104,8 +105,8 @@ public class EntregadorController {
         }
     }
 
-    @RequestMapping("/pedido/{pedidoId}")
-    public ResponseEntity<?> buscarPorPedidoId(ObjectId pedidoId) { // exceção
+    @GetMapping("/pedido/{pedidoId}")
+    public ResponseEntity<?> buscarPorPedidoId(@PathVariable ObjectId pedidoId) { // exceção
         try {
             return ResponseEntity.ok(entregadorService.buscarPorPedidoId(pedidoId));
         } catch (RuntimeException e) {
