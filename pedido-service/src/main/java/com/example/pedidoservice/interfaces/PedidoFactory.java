@@ -1,1 +1,7 @@
-// fazer o cliente e entregador primeiro
+package com.example.pedidoservice.interfaces;
+
+import com.example.pedidoservice.model.Pedido;
+
+public interface PedidoFactory {
+    Pedido criarPedido();
+}
