@@ -17,9 +17,6 @@ public class Pedido {
     private LocalDateTime dataHora;
     private double taxaEntrega;
    
-
-   
-
     public String getId() {
         return id;
     }

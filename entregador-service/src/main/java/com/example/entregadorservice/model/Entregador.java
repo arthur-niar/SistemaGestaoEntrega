@@ -1,6 +1,5 @@
 package com.example.entregadorservice.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,9 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Entregador {
     
     @Id
-    private ObjectId id;
-    private ObjectId usuarioId;
-    private ObjectId pedidoId;
+    private String id;
+    private String usuarioId;
+    private String pedidoId;
     private String nome;
     private String email;
     private String telefone;
@@ -18,8 +17,8 @@ public class Entregador {
     private String veiculo; // deve incluir a placa
     
     
-    public Entregador(org.bson.types.ObjectId id, org.bson.types.ObjectId usuarioId, org.bson.types.ObjectId pedidoId,
-            String nome, String email, String telefone, String CNH, String veiculo) {
+    public Entregador(String id, String usuarioId, String pedidoId, String nome,
+     String email, String telefone, String CNH, String veiculo) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.pedidoId = pedidoId;
@@ -30,14 +29,14 @@ public class Entregador {
         this.veiculo = veiculo;
     }
 
-    public ObjectId getId() { return id; }
-    public void setId(ObjectId id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public ObjectId getUsuarioId() { return usuarioId; }
-    public void setUsuarioId(ObjectId usuarioId) { this.usuarioId = usuarioId; }
+    public String getUsuarioId() { return usuarioId; }
+    public void setUsuarioId(String usuarioId) { this.usuarioId = usuarioId; }
 
-    public ObjectId getPedidoId() { return pedidoId; }
-    public void setPedidoId(ObjectId pedidoId) { this.pedidoId = pedidoId; }
+    public String getPedidoId() { return pedidoId; }
+    public void setPedidoId(String pedidoId) { this.pedidoId = pedidoId; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }

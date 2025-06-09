@@ -34,22 +34,20 @@ public class UsuarioController {
                 .orElse(ResponseEntity.status(401).body("Nome de usuário ou senha inválidos"));
     }
 
- 
-
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> cadastrar(@RequestBody Usuario usuario) {
         Usuario novo = usuarioService.salvar(usuario);
         return ResponseEntity.ok(novo);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") // atualizar
     public ResponseEntity<?> atualizar(@PathVariable String id, @RequestBody Usuario usuarioAtualizado) {
         return usuarioService.atualizar(id, usuarioAtualizado)
                 .map(usuario -> ResponseEntity.ok(usuario))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // excluir
     public ResponseEntity<?> excluir(@PathVariable String id) {
         boolean removido = usuarioService.excluir(id);
         if (removido) {
