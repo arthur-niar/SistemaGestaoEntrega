@@ -1,6 +1,5 @@
 package com.example.clienteservice.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,14 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Cliente {
 	
     @Id
-    private ObjectId id;
-    private ObjectId usuarioId; // foreign key do Usuario
+    private String id;
+    private String usuarioId; // foreign key do Usuario
     private String nome;
     private String email;
     private String telefone;
     private String endereco;
     
-    public Cliente(ObjectId id, ObjectId usuarioId, String nome, String email, String telefone, String endereco) {
+    public Cliente(String id, String usuarioId, String nome,
+     String email, String telefone, String endereco) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.nome = nome;
@@ -24,11 +24,11 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public ObjectId getId() { return id; }
-    public void setId(ObjectId id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public ObjectId getUsuarioId() { return usuarioId; }
-    public void setUsuarioId(ObjectId usuarioId) { this.usuarioId = usuarioId; }
+    public String getUsuarioId() { return usuarioId; }
+    public void setUsuarioId(String usuarioId) { this.usuarioId = usuarioId; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }

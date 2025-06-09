@@ -28,7 +28,7 @@ public class EntregadorController {
         return "Entregador Service está online!";
     }
     
-    @PostMapping("/salvar")
+    @PostMapping("/cadastrar")
     public ResponseEntity<?> adicionarEntregador(@RequestBody Entregador entregador) {
         if (entregador == null || entregador.getUsuarioId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -41,36 +41,32 @@ public class EntregadorController {
         }
     }
 
-    @PostMapping("/atualizar")
-    public ResponseEntity<?> atualizarEntregador(Entregador entregador) {
+    @PostMapping("/{id}")
+    public ResponseEntity<?> atualizarEntregador(@PathVariable String id, @RequestBody Entregador entregador) {
         if (entregador == null || entregador.getId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
              "Parâmetros inválidos para atualização do entregador");
         }
         try {
-            return ResponseEntity.ok(entregadorService.atualizar(entregador));
+            return ResponseEntity.ok(entregadorService.atualizar(id, entregador));
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
-    @DeleteMapping("/excluir/{id}")
-    public ResponseEntity<String> excluirEntregador(ObjectId id) {
-        if (!ObjectId.isValid(id.toHexString())) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
-            "ID inválido");
-        }
-        try {
-            entregadorService.excluir(id);
-            return ResponseEntity.ok("Entregador excluído com sucesso.");
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+    @DeleteMapping("/{id}") // excluir
+    public ResponseEntity<?> excluir(@PathVariable String id) {
+        boolean removido = entregadorService.excluir(id);
+        if (removido) {
+            return ResponseEntity.ok("Entregador removido com sucesso.");
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/isentregador/{id}")
-    public ResponseEntity<?> isEntregador(ObjectId id) { // exceção
-        if (!ObjectId.isValid(id.toHexString())) {
+    public ResponseEntity<?> isEntregador(@PathVariable String id) { // exceção
+        if (!ObjectId.isValid(id)) {
             return ResponseEntity.badRequest().body("ID inválido");
         }
         try {
@@ -87,8 +83,8 @@ public class EntregadorController {
     }
 
     @RequestMapping("/{id}")
-    public ResponseEntity<?> buscarPorId(@PathVariable ObjectId id) {
-        if (!ObjectId.isValid(id.toHexString())) {
+    public ResponseEntity<?> buscarPorId(@PathVariable String id) {
+        if (!ObjectId.isValid(id)) {
             return ResponseEntity.badRequest().body("ID inválido");
         }
         return entregadorService.buscarPorId(id)
@@ -97,7 +93,7 @@ public class EntregadorController {
     } 
     
     @GetMapping("/usuario/{usuarioId}")
-    public ResponseEntity<?> buscarPorUsuarioId(@PathVariable ObjectId usuarioId) { // exceção
+    public ResponseEntity<?> buscarPorUsuarioId(@PathVariable String usuarioId) { // exceção
         try {
             return ResponseEntity.ok(entregadorService.buscarPorUsuarioId(usuarioId));
         } catch (RuntimeException e) {
@@ -106,7 +102,7 @@ public class EntregadorController {
     }
 
     @GetMapping("/pedido/{pedidoId}")
-    public ResponseEntity<?> buscarPorPedidoId(@PathVariable ObjectId pedidoId) { // exceção
+    public ResponseEntity<?> buscarPorPedidoId(@PathVariable String pedidoId) { // exceção
         try {
             return ResponseEntity.ok(entregadorService.buscarPorPedidoId(pedidoId));
         } catch (RuntimeException e) {
