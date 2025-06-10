@@ -41,9 +41,10 @@ O MongoDB é um banco de dados NoSQL utilizado para armazenar os dados do sistem
    ./mvnw spring-boot:run
    ```
 
-   O Eureka Server estará disponível no seu localhost na porta 8761 por padrão (pode ser alterado acessando eureka-server/src/main/resources/application.properties)
+   O Eureka Server estará disponível no seu localhost na porta 8761 por padrão
+   (pode ser alterado acessando eureka-server/src/main/resources/application.properties)
 
-3. **Iniciar os Microserviços**
+4. **Iniciar os Microserviços**
 
    Para cada microserviço (por exemplo, "usuario-service", "pedido-service", etc.), navegue até o diretório correspondente e execute:
 
@@ -54,7 +55,7 @@ O MongoDB é um banco de dados NoSQL utilizado para armazenar os dados do sistem
 
    Cada microserviço será registrado automaticamente no Eureka Server.
 
-4. **Iniciar o Gateway**
+5. **Iniciar o Gateway**
 
    O Gateway atua como ponto de entrada para os microserviços. Navegue até o diretório "gateway-server" e execute:
 
@@ -63,9 +64,10 @@ O MongoDB é um banco de dados NoSQL utilizado para armazenar os dados do sistem
    ./mvnw spring-boot:run
    ```
 
-   O Gateway estará disponível no seu localhost, na porta 8080 por padrão (pode ser alterado acessando gateway-server/src/main/resources/application.properties)
+   O Gateway estará disponível no seu localhost, na porta 8080 por padrão
+   (pode ser alterado acessando gateway-server/src/main/resources/application.properties)
 
-5. **Acessar a Aplicação**
+7. **Acessar a Aplicação**
 
    Com todos os serviços em execução, você pode acessar a aplicação através do Gateway. As requisições serão roteadas para os microserviços correspondentes.
 
