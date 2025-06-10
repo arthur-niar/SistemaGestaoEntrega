@@ -1,81 +1,91 @@
 # SistemaGestaoEntrega
-Trabalho para a disciplina Estevão (Arquitetura). 
 
-Louco e sonhador
-Louco e sonhador
-Louco e sonhador
+## 📘 Descrição
 
-Louco e sonhador
-Louco e sonhador
-Louco e sonhador
+Este projeto foi desenvolvido para a disciplina Proj. Arq. de Software, ministrada pelo professor Francisco Estevão. O objetivo é criar um sistema de gestão de entregas utilizando uma arquitetura baseada em microserviços.
 
-O sonho é grande como um coração de mãe
-E eu agradeço a geral que botou fé
-A seda queima leve enquanto o Sol se põe
-A quem se propõe a caminhar com o próprio pé
+## 🛠️ Tecnologias Utilizadas
 
-Mas, nessa vida, se eu caí, eu aprendi
-Do pouco que vivi, meu erro foi meu professor
-E o passado que não me deixa mentir
-Se eu não desisti, eu aprendi lidar com a dor
+### 1. **Java com Spring Boot**
 
-Mas lembra quando
-Era só um moleque no jet
-Sonhando com aquela Hornet
-Com uma Meca de teto solar, eu tô indo buscar
+O projeto é desenvolvido em Java, utilizando o framework Spring Boot para facilitar a criação de microserviços independentes e escaláveis. O SpringBoot proporciona uma configuração mínima, permitindo que a equipe se concentrem na lógica de negócios.
 
-Mas lembra quando
-Só saía de roupa emprestada
-Só a lábia, não tinha mais nada
-Mas nunca fiz ninguém de escada pra poder chegar
+### 2. **Arquitetura de Microserviços**
 
-E por enquanto
-Acredito naquilo que canto
-E quem sabe algum dia me encontro
-No destaque do lado da preta e grana pra gastar
+A aplicação é estruturada em microserviços, cada um responsável por uma funcionalidade específica do sistema. Essa abordagem permite maior flexibilidade e escalabilidade, além de facilitar a manutenção e evolução do sistema.
 
-O sonho é grande
-E mesmo que pareça distante
-Minha força é o que me garante
-Minha história ainda vai ser espelho pros menor de cá
+### 3. **Eureka (Service Discovery)**
 
-Louco e sonhador
-Louco e sonhador
-Louco e sonhador
+O Eureka é utilizado como servidor de descoberta de serviços. Ele permite que os microserviços se registrem e descubram uns aos outros de forma dinâmica, facilitando a comunicação entre eles sem a necessidade de configurações estáticas de rede.
 
-Louco e sonhador
-Louco e sonhador
-Louco e sonhador
+### 4. **MongoDB**
 
-Mas, nessa vida, se eu caí, eu aprendi
-Do pouco que vivi, meus erros foi meu professor
-E o passado que não me deixa mentir
-Se eu não desisti, eu aprendi lidar com a dor
+O MongoDB é um banco de dados NoSQL utilizado para armazenar os dados do sistema. Sua estrutura flexível permite armazenar informações de forma eficiente, adaptando-se às necessidades do sistema de gestão de entregas.
 
-Mas lembra quando
-Era só um moleque no jet
-Sonhando com aquela Hornet
-Com uma Meca de teto solar, eu tô indo buscar
+## 🚀 Como Executar o Projeto
 
-Mas lembra quando
-Só saía de roupa emprestada
-Só a lábia, não tinha mais nada
-Mas nunca fiz ninguém de escada pra poder chegar
+1. **Clonar o Repositório**
 
-E por enquanto
-Acredito naquilo que canto
-E quem sabe um dia me encontro
-No destaque do lado da preta e grana pra gastar
+   ```
+   bash
+   git clone https://github.com/arthur-niar/SistemaGestaoEntrega.git
+   cd SistemaGestaoEntrega
+   ```
 
-O sonho é grande
-E mesmo que pareça distante
-Minha força é o que me garante
-Minha história ainda vai ser espelho pros menor de cá
+2. **Iniciar o Eureka Server**
 
-Louco e sonhador
-Louco e sonhador
-Louco e sonhador
+   Navegue até o diretório "eureka-server" e execute:
 
-Louco e sonhador
-Louco e sonhador
-Louco e sonhador
+   ```
+   bash
+   ./mvnw spring-boot:run
+   ```
+
+   O Eureka Server estará disponível no seu localhost na porta 8761 por padrão (pode ser alterado acessando eureka-server/src/main/resources/application.properties)
+
+3. **Iniciar os Microserviços**
+
+   Para cada microserviço (por exemplo, "usuario-service", "pedido-service", etc.), navegue até o diretório correspondente e execute:
+
+   ```
+   bash
+   ./mvnw spring-boot:run
+   ```
+
+   Cada microserviço será registrado automaticamente no Eureka Server.
+
+4. **Iniciar o Gateway**
+
+   O Gateway atua como ponto de entrada para os microserviços. Navegue até o diretório "gateway-server" e execute:
+
+   ```
+   bash
+   ./mvnw spring-boot:run
+   ```
+
+   O Gateway estará disponível no seu localhost, na porta 8080 por padrão (pode ser alterado acessando gateway-server/src/main/resources/application.properties)
+
+5. **Acessar a Aplicação**
+
+   Com todos os serviços em execução, você pode acessar a aplicação através do Gateway. As requisições serão roteadas para os microserviços correspondentes.
+
+## 📂 Estrutura do Repositório
+
+- "eureka-server/": Contém o servidor Eureka.
+- "gateway-server/": Contém o API Gateway.
+- "usuario-service/": Microserviço responsável pela gestão de usuários.
+- "pedido-service/": Microserviço responsável pela gestão de pedidos.
+- "entregador-service/": Microserviço responsável pela gestão de entregadores.
+- "cliente-service/": Microserviço responsável pela gestão de clientes.
+
+## ☕ Equipe
+
+- Arthur Wagner de Carvalho Gondim Lemos
+- Carlos Dirceu Rios Rodrigues Neto
+- João Lucas Lobo Pinto Barboza
+- Renê Medeiros Montenegro
+- Rhyan da Rocha Ferreira
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
