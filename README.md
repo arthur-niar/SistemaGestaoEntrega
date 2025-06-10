@@ -41,7 +41,7 @@ O MongoDB é um banco de dados NoSQL utilizado para armazenar os dados do sistem
    ./mvnw spring-boot:run
    ```
 
-   O Eureka Server estará disponível no seu localhost na porta 8761 por padrão  
+   O Eureka Server estará disponível no seu localhost na porta 8761 por padrão.  
    (pode ser alterado acessando eureka-server/src/main/resources/application.properties)
 
 4. **Iniciar os Microserviços**
