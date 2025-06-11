@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.usuarioservice.annotations.LogAutenticacao;
 import com.example.usuarioservice.dto.LoginDTO;
 import com.example.usuarioservice.model.Usuario;
 import com.example.usuarioservice.service.UsuarioService;
@@ -27,27 +28,29 @@ public class UsuarioController {
         return ResponseEntity.ok("Usuário Service está online!");
     }
 
-    @PostMapping("/login")
+    @LogAutenticacao
+@PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO login) {
         return usuarioService.autenticar(login.getNome(), login.getSenha())
                 .map(usuario -> ResponseEntity.ok("Login bem-sucedido!"))
                 .orElse(ResponseEntity.status(401).body("Nome de usuário ou senha inválidos"));
     }
 
-    @PostMapping("/cadastrar")
+    @LogAutenticacao
+@PostMapping("/cadastrar")
     public ResponseEntity<Usuario> cadastrar(@RequestBody Usuario usuario) {
         Usuario novo = usuarioService.salvar(usuario);
         return ResponseEntity.ok(novo);
     }
 
-    @PutMapping("/{id}") // atualizar
+    @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable String id, @RequestBody Usuario usuarioAtualizado) {
         return usuarioService.atualizar(id, usuarioAtualizado)
                 .map(usuario -> ResponseEntity.ok(usuario))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}") // excluir
+    @DeleteMapping("/{id}") 
     public ResponseEntity<?> excluir(@PathVariable String id) {
         boolean removido = usuarioService.excluir(id);
         if (removido) {
