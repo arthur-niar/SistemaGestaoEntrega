@@ -25,7 +25,7 @@ public class ClienteController {
 
     @GetMapping("/teste")
     public ResponseEntity<String> ping() {
-        return ResponseEntity.ok("Pedido Service está online!");
+        return ResponseEntity.ok("Cliente Service está online!");
     }
 
     @PostMapping("/cadastrar")
