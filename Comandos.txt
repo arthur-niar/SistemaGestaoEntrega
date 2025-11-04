@@ -1,0 +1,44 @@
+
+## ADICIONAR PEDIDO ##
+
+Após rodar a aplicação, envie um POST para http://localhost:8080/api/pedidos/adiciona
+
+# curl (Windows / Linux / macOS)
+curl -X POST "http://localhost:8080/api/pedidos/adicionar" \
+  -H "Content-Type: application/json" \
+  -d "{\"cliente\":\"João\",\"endereco\":\"Rua A, 123\",\"taxaEntrega\":10.5,\"dataEntrega\":\"2025-11-05T10:00:00\",\"itens\":[{\"produtoId\":\"1\",\"quantidade\":2}]}"
+
+# PowerShell
+$body = @{
+  cliente = "João"
+  endereco = "Rua A, 123"
+  taxaEntrega = 10.5
+  dataEntrega = "2025-11-05T10:00:00"
+  itens = @(@{ produtoId = "1"; quantidade = 2 })
+}
+Invoke-RestMethod -Uri 'http://localhost:8080/api/pedidos/adicionar' -Method Post -ContentType 'application/json' -Body ($body | ConvertTo-Json)
+
+// fetch (browser / Node)
+fetch('http://localhost:8080/api/pedidos/adicionar', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    cliente: 'João',
+    endereco: 'Rua A, 123',
+    taxaEntrega: 10.5,
+    dataEntrega: '2025-11-05T10:00:00',
+    itens: [{ produtoId: '1', quantidade: 2 }]
+  })
+}).then(r => r.json()).then(console.log).catch(console.error);
+
+
+GitHub Copilot
+
+Rode sua aplicação (ex.: http://localhost:8080) e envie um POST para:
+http://localhost:8080/api/pedidos/adicionar
+com o header Content-Type: application/json e um JSON correspondente à sua classe Pedido.
+
+
+Postman:
+- Selecionar POST, URL /api/pedidos/adicionar
+- Body -> raw -> JSON -> colar o JSON e enviar.
