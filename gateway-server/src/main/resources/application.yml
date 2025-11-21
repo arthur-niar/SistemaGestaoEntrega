@@ -3,12 +3,31 @@ spring:
     name: gateway-server
   cloud:
     gateway:
+      # Static routes for known services so paths like /api/usuarios/** map to the correct service
+      routes:
+        - id: usuarios
+          uri: lb://usuario-service
+          predicates:
+            - Path=/api/usuarios/**
+        - id: clientes
+          uri: lb://cliente-service
+          predicates:
+            - Path=/api/clientes/**
+        - id: entregadores
+          uri: lb://entregador-service
+          predicates:
+            - Path=/api/entregadores/**
+        - id: pedidos
+          uri: lb://pedido-service
+          predicates:
+            - Path=/api/pedidos/**
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
+          # discovery locator can still be used for additional services
           predicates:
-            - Path=/api/**
+            - "Path=/api/**"
 
 server:
   port: 8080
