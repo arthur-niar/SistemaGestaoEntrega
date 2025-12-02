@@ -23,6 +23,12 @@ public class RouteConfig {
                 .route("pedido-service", r -> r
                         .path("/api/pedidos/**")
                         .uri("http://localhost:8082"))
+                .route("tms-adapter-service", r -> r
+                        .path("/tms/**")
+                        .uri("http://localhost:8085"))
+                .route("tms-fake-service", r -> r
+                        .path("/shipments/**")
+                        .uri("http://localhost:8086"))
                 .build();
     }
 }

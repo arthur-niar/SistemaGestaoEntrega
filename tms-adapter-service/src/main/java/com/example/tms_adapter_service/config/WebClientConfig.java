@@ -20,7 +20,7 @@ public class WebClientConfig {
     @Qualifier("tmsClient")
     public WebClient tmsClient() {
         return WebClient.builder()
-                .baseUrl("http://tms-external-api.com") // mock por enquanto ↑
+                .baseUrl("http://localhost:8086") // fake service
                 .build();
     }
 }
