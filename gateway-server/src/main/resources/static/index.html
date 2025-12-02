@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Frontend mínimo - Sistema de Entrega</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Sistema de Entrega - Frontend</h1>
+
+      <label
+        >Gateway base URL (deixe vazio para usar localhost:8080):
+        <input id="gatewayUrl" value=""
+      /></label>
+
+      <div class="buttons">
+        <button id="openUsuario">Criar Usuário</button>
+        <button id="openCliente">Criar Cliente</button>
+        <button id="openEntregador">Criar Entregador</button>
+        <button id="openPedido">Criar Pedido (manual)</button>
+        <button id="openPedidoTipo">Criar Pedido (factory/strategy)</button>
+        <button id="openShipment">Lançar Shipment (TMS)</button>
+        <button id="openConsultarShipment">Consultar Shipment (TMS)</button>
+      </div>
+
+      <section id="result">
+        <h2>Resultado</h2>
+        <pre id="output">Nenhuma ação ainda.</pre>
+      </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="modalUsuario">
+      <div class="modal-content">
+        <h3>Cadastrar Usuário</h3>
+        <label>id (opcional): <input id="usuario_id" /></label>
+        <label>nome: <input id="usuario_nome" /></label>
+        <label>email: <input id="usuario_email" /></label>
+        <label>senha: <input id="usuario_senha" type="password" /></label>
+        <label
+          >tipo: <input id="usuario_tipo" placeholder="cliente|entregador|..."
+        /></label>
+        <div class="actions">
+          <button id="submitUsuario">Enviar</button>
+          <button class="close">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalCliente">
+      <div class="modal-content">
+        <h3>Cadastrar Cliente</h3>
+        <label>id (opcional): <input id="cliente_id" /></label>
+        <label>usuarioId (obrigatório): <input id="cliente_usuarioId" /></label>
+        <label>nome: <input id="cliente_nome" /></label>
+        <label>email: <input id="cliente_email" /></label>
+        <label>telefone: <input id="cliente_telefone" /></label>
+        <label>endereco: <input id="cliente_endereco" /></label>
+        <div class="actions">
+          <button id="submitCliente">Enviar</button>
+          <button class="close">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalEntregador">
+      <div class="modal-content">
+        <h3>Cadastrar Entregador</h3>
+        <label>id (opcional): <input id="entregador_id" /></label>
+        <label
+          >usuarioId (obrigatório): <input id="entregador_usuarioId"
+        /></label>
+        <label>nome: <input id="entregador_nome" /></label>
+        <label>email: <input id="entregador_email" /></label>
+        <label>telefone: <input id="entregador_telefone" /></label>
+        <label>CNH: <input id="entregador_CNH" /></label>
+        <label
+          >veiculo: <input id="entregador_veiculo" placeholder="modelo - placa"
+        /></label>
+        <div class="actions">
+          <button id="submitEntregador">Enviar</button>
+          <button class="close">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalPedido">
+      <div class="modal-content">
+        <h3>Cadastrar Pedido (manual)</h3>
+        <label>id (opcional): <input id="pedido_id" /></label>
+        <label>descricao: <input id="pedido_descricao" /></label>
+        <label
+          >taxaEntrega: <input id="pedido_taxa" type="number" step="0.01"
+        /></label>
+        <div class="actions">
+          <button id="submitPedido">Enviar</button>
+          <button class="close">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalPedidoTipo">
+      <div class="modal-content">
+        <h3>Cadastrar Pedido por Tipo (factory/strategy)</h3>
+        <label
+          >Tipo:
+          <select id="pedido_tipo">
+            <option value="rapida">rápida</option>
+            <option value="agendada">agendada</option>
+          </select></label
+        >
+        <div class="actions">
+          <button id="submitPedidoTipo">Criar</button>
+          <button class="close">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalShipment">
+      <div class="modal-content">
+        <h3>Lançar Shipment (TMS)</h3>
+        <label>Pedido ID (obrigatório): <input id="shipment_pedidoId" /></label>
+        <div class="actions">
+          <button id="submitShipment">Lançar</button>
+          <button class="close">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalConsultarShipment">
+      <div class="modal-content">
+        <h3>Consultar Shipment (TMS Fake)</h3>
+        <label
+          >Shipment ID (obrigatório): <input id="consultar_shipmentId"
+        /></label>
+        <div class="actions">
+          <button id="submitConsultarShipment">Consultar</button>
+          <button class="close">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

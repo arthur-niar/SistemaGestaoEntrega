@@ -83,10 +83,8 @@ O MongoDB é um banco de dados NoSQL utilizado para armazenar os dados do sistem
 ## ☕ Equipe
 
 - Arthur Wagner de Carvalho Gondim Lemos
-- Carlos Dirceu Rios Rodrigues Neto
-- João Lucas Lobo Pinto Barboza
+- Mariana (Lou) Gonçalves Lousada
 - Renê Medeiros Montenegro
-- Rhyan da Rocha Ferreira
 
 ## 📄 Licença
 
